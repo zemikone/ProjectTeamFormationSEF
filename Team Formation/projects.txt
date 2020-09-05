@@ -1,0 +1,20 @@
+Customer Relationship Management (CRM)
+Pr1
+DBA Programmer UI_Designer
+Oracle Java JavaX
+Zemi MAnagement App
+Pr2
+DBA Programmer UI_Designer
+Oracle IOS CSS
+New Project App
+Pr3
+DBA Programmer UI_Designer
+Oracle Python HTML
+Online Streaming App
+Pr4
+DBA Programmer UI_Designer
+MsSQL C++ XML
+Web Application
+Pr5
+DBA Programmer UI_Designer
+SqLite Android XML
