@@ -1,0 +1,91 @@
+S1
+Anne
+F
+A
+3.4
+3
+Pr1 Pr2 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S2
+Nick
+M
+A
+3.8
+3
+Pr1 Pr2 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S3
+Jonny
+M
+A
+2.0
+3
+Pr1 Pr2 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S4
+Macarina
+M
+A
+2.6
+3
+Pr1 Pr2 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S5
+Killer
+M
+A
+3.5
+3
+Pr1 Pr2 Pr3 Pr6
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S6
+Dave
+M
+A
+2.4
+3
+Pr1 Pr2 Pr3 Pr6
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S7
+Michel
+M
+A
+3.6
+3
+Pr1 Pr2 Pr3 Pr5
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S8
+Lisa
+F
+A
+3.0
+3
+Pr1 Pr6 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S9
+Kenneth
+M
+A
+2.9
+3
+Pr1 Pr2 Pr3 Pr4
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+S10
+Jeremy
+M
+A
+1.9
+3
+Pr1 Pr2 Pr3 Pr5
+Java Developer,System Analyst,DB Admin
+S6 S7 S8
+

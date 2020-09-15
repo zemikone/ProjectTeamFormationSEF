@@ -18,3 +18,7 @@ Web Application
 Pr5
 DBA Programmer UI_Designer
 SqLite Android XML
+Stock Management App
+Pr6
+DBA Programmer UI_Designer
+SqLite Android ios

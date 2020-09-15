@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Project {
     String pId;
     String name;
+    int prefCount;
     ArrayList<String> roles;
     ArrayList<String> frameworks;
 
@@ -50,5 +51,13 @@ public class Project {
 
     public void setFrameworks(ArrayList<String> frameworks) {
         this.frameworks = frameworks;
+    }
+
+    public int getPrefCount() {
+        return prefCount;
+    }
+
+    public void setPrefCount(int prefCount) {
+        this.prefCount = prefCount;
     }
 }
