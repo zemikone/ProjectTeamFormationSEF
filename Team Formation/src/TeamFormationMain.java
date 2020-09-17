@@ -1,20 +1,30 @@
+import Controller.FitnessMetricsController;
 import Model.Project;
 import Model.Student;
 import Model.Team;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TeamFormationMain {
+public class TeamFormationMain extends Application {
+
 
     static ArrayList<Project> projectsList;
     static ArrayList<Student> studentList;
     static ArrayList<Team> teamList;
+    static ProjectManager projectManager;
+    static StudentRep studentRep;
     private static Scanner scanIn = null;
 
-    public static void main(String[] args) throws Exception {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         projectsList = new ArrayList();
         studentList = new ArrayList();
         teamList = new ArrayList();
@@ -24,8 +34,125 @@ public class TeamFormationMain {
         readProjectsFile();
         readStudentsFile();
         readTeamsFile();
-        shortlistProjects();
+        showMainMenu();
     }
+
+    public static void main(String[] args) throws Exception {
+        launch(args);
+
+    }
+
+    public static void showMainMenu() throws Exception{
+        int option;
+        projectManager = new ProjectManager(projectsList,studentList,teamList);
+        studentRep = new StudentRep(projectsList,studentList,teamList);
+        do {
+            option = showMenu();
+            switch (option) {
+                case 1:
+                    manageStudent();
+                    break;
+                case 2:
+                    projectManager.shortlistProjects();
+                    break;
+                case 3:
+//                    addProject();
+                    break;
+                case 4:
+                    projectManager.swapMembers();
+                    break;
+                case 5:
+                    System.out.println("Thank you. Good Bye.");
+                    System.exit(0);
+                default:
+                    System.out.println("Sorry, please enter valid Option");
+                    showMenu();
+            }
+        } while (option != 6);
+    }
+    public static int showMenu() {
+
+        int option;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("*************************");
+        System.out.println("  Main Menu:");
+        System.out.println("*************************");
+        System.out.println("1.Manage Student Details");
+        System.out.println("2.Shortlist Projects");
+        System.out.println("3.Form Teams");
+        System.out.println("4.Display Team Fitness");
+        System.out.println("5.Quit");
+        System.out.println("*************************");
+        System.out.println("Enter your choice:");
+        try {
+            option = keyboard.nextInt();
+        } catch (Exception e) {
+            return 9;
+        }
+
+
+        return option;
+
+    }
+
+
+
+    public static void manageStudent() throws Exception{
+        int option;
+        do {
+            option = manageStudentMenu();
+            switch (option) {
+                case 1:
+                    projectManager.addPersonality();
+                    break;
+                case 2:
+//                        calPercentagePref();
+                    break;
+                case 3:
+                    studentRep.selectRoles();
+                    break;
+                case 4:
+                    studentRep.selectUnlikeMem();
+                    return;
+                case 5:
+                    projectManager.changeGpa();
+                    return;
+                case 6:
+                    TeamFormationMain.showMainMenu();
+                    return;
+                default:
+                    System.out.println("Sorry, please enter valid Option");
+                    TeamFormationMain.showMainMenu();
+            }
+        } while (option != 6);
+    }
+
+    public static int manageStudentMenu() {
+
+        int option;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("*************************");
+        System.out.println("Manage Student Menu:");
+        System.out.println("*************************");
+        System.out.println("1.Capture Student Personalities");
+        System.out.println("2.Add Student Preferences");
+        System.out.println("3.Add Preferred Roles");
+        System.out.println("4.Select Members not Like to Work With");
+        System.out.println("5.change GPA");
+        System.out.println("6.Back");
+        System.out.println("*************************");
+        System.out.println("Enter your choice:");
+        try {
+            option = keyboard.nextInt();
+        } catch (Exception e) {
+            return 3;
+        }
+        return option;
+
+    }
+
+
+
 
 
     public static void readProjectsFile()  throws Exception{
@@ -109,31 +236,38 @@ public class TeamFormationMain {
                         i++;
                         break;
                     case 6:
-                        String[] inputArray = inputLine.split("\\s+");
-                        if (inputArray.length != 0) {
-                            for(String projId: inputArray){
-                                student.getPrefProjects().add(projId);
+                        if(!inputLine.equals("")) {
+                            String[] inputArray = inputLine.split("\\s+");
+                            if (inputArray.length != 0) {
+                                for (String projId : inputArray) {
+                                    student.getPrefProjects().add(projId);
+                                }
                             }
                         }
                         i++;
                         break;
                     case 7:
-                        String[] inputArray1 = inputLine.split(",");
-                        if (inputArray1.length != 0) {
-                            for(String role: inputArray1){
-                                student.getRoles().add(role);
+                        if(!inputLine.equals("")) {
+
+                            String[] inputArray1 = inputLine.split("\\s+");
+                            if (inputArray1.length != 0) {
+                                for (String role : inputArray1) {
+                                    student.getRoles().add(role);
+                                }
                             }
                         }
                         i++;
                         break;
                     case 8:
-                        String[] inputArray2 = inputLine.split("\\s+");
-                        if (inputArray2.length != 0) {
-                            for(String unMem: inputArray2){
-                                student.getUnlikeMemb().add(unMem);
+                        if(!inputLine.equals("")) {
+                            String[] inputArray2 = inputLine.split("\\s+");
+                            if (inputArray2.length != 0) {
+                                for (String unMem : inputArray2) {
+                                    student.getUnlikeMemb().add(unMem);
+                                }
                             }
-                            studentList.add(student);
                         }
+                        studentList.add(student);
                         i = 0;
                         break;
                     default:
@@ -184,59 +318,58 @@ public class TeamFormationMain {
 
     }
 
-    public static void shortlistProjects() throws Exception {
-        if (projectsList.size() >4) {
-            for (Project project : projectsList) {
-                String tempProjId = project.getpId();
-                for(Student student: studentList){
-                    for(String prefproj : student.getPrefProjects()){
-                        if(prefproj.equals(tempProjId)){
-                            project.setPrefCount(project.getPrefCount()+1);
-                        }
-                    }
+    public static void generateStudentsFile(ArrayList<Student> studentsList) {
+        try {
+            StringBuilder builder = new StringBuilder();
+
+            for (Student student : studentsList) {
+                builder.append(student.getId() + "\n");
+                builder.append(student.getName() + "\n");
+                builder.append(student.getGender() + "\n");
+                if(student.getPersonality()!=null) {
+                    builder.append(student.getPersonality() + "\n");
+                }else{
+                    builder.append(" \n");
                 }
-            }
-
-            //Sorting the projects
-            boolean sorted = false;
-            Project temp;
-            while (!sorted) {
-                sorted = true;
-                for (int i = 0; i < projectsList.size() - 1; i++) {
-                    if (projectsList.get(i).getPrefCount() < projectsList.get(i + 1).getPrefCount()) {
-                        temp = projectsList.get(i);
-                        projectsList.set(i, projectsList.get(i + 1));
-                        projectsList.set(i + 1, temp);
-                        sorted = false;
-                    }
+                if(student.getGpa()!=null){
+                    builder.append(student.getGpa() + "\n");
                 }
+                builder.append(student.getExpYears() + "\n");
+
+                if(student.getPrefProjects()!=null){
+                    for(String proj : student.getPrefProjects()) {
+                        builder.append(proj + " ");
+                    }
+                    builder.append("\n");
+                }else{
+                    builder.append("\n");
+                }
+                if(student.getRoles()!=null){
+                    for(String role : student.getRoles()) {
+                        builder.append(role + " ");
+                    }
+                    builder.append("\n");
+                }else{
+                    builder.append("\n");
+                }
+                if(student.getUnlikeMemb()!=null){
+                    for(String mem : student.getUnlikeMemb()) {
+                        builder.append(mem + " ");
+                    }
+                }else{
+                    builder.append("\n");
+                }
+                builder.append("\n");
             }
-//            To shortlist projects based on no of students
-//            int noProjects = studentList.size()/4;
 
-            //Remove the rest of the projects keeping the most prefered ones
-            ArrayList<Project> tempProjectsList = new ArrayList();
-            for (int i = 0; i < 5; i++) {
-                tempProjectsList.add(projectsList.get(i));
-            }
-            projectsList = tempProjectsList;
-
+            BufferedWriter writer = new BufferedWriter(new FileWriter("students.txt"));
+            writer.write(builder.toString());
+            writer.close();
+            System.out.println("students.txt generated!");
+        } catch (Exception e) {
+            System.out.println("file writing error : " + e);
         }
-
-
-        System.out.println("++++Project List++++");
-        System.out.println(" ID     Project Title    Pref Count");
-        System.out.println(" --     -------------    ----------");
-        for (Project project : projectsList) {
-            System.out.println(" " + project.getpId() + "     " + project.getName() + "    " + project.getPrefCount());
-        }
-
-        System.out.println("Projects have been Shortlisted Successfully!");
-
 
     }
-
-
-
 
 }
