@@ -1,7 +1,16 @@
+import Controller.FitnessMetricsController;
 import Model.Project;
 import Model.Student;
 import Model.Team;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -236,7 +245,23 @@ public class ProjectManager {
 
     }
 
-    public void swapMembers(){
+    public void swapMembers() throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(TeamFormationMain.class.getResource("/View/fitness_metrics.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setOpacity(1);
+        stage.setTitle("Team Fitness Matrics");
+        stage.setScene(new Scene(root, 1000, 800));
+        FitnessMetricsController controller = fxmlLoader.getController();
+        controller.setData(teamList,studentList,projectsList);
+        stage.showAndWait();
+
 
     }
 

@@ -1,15 +1,20 @@
+import Controller.FitnessMetricsController;
 import Model.Project;
 import Model.Student;
 import Model.Team;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TeamFormationMain {
+public class TeamFormationMain extends Application {
+
 
     static ArrayList<Project> projectsList;
     static ArrayList<Student> studentList;
@@ -18,7 +23,8 @@ public class TeamFormationMain {
     static StudentRep studentRep;
     private static Scanner scanIn = null;
 
-    public static void main(String[] args) throws Exception {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         projectsList = new ArrayList();
         studentList = new ArrayList();
         teamList = new ArrayList();
@@ -31,6 +37,10 @@ public class TeamFormationMain {
         showMainMenu();
     }
 
+    public static void main(String[] args) throws Exception {
+        launch(args);
+
+    }
 
     public static void showMainMenu() throws Exception{
         int option;
@@ -88,33 +98,33 @@ public class TeamFormationMain {
 
 
     public static void manageStudent() throws Exception{
-            int option;
-            do {
-                option = manageStudentMenu();
-                switch (option) {
-                    case 1:
-                        projectManager.addPersonality();
-                        break;
-                    case 2:
+        int option;
+        do {
+            option = manageStudentMenu();
+            switch (option) {
+                case 1:
+                    projectManager.addPersonality();
+                    break;
+                case 2:
 //                        calPercentagePref();
-                        break;
-                    case 3:
-                        studentRep.selectRoles();
-                        break;
-                    case 4:
-                        studentRep.selectUnlikeMem();
-                        return;
-                    case 5:
-                        projectManager.changeGpa();
-                        return;
-                    case 6:
-                        TeamFormationMain.showMainMenu();
-                        return;
-                    default:
-                        System.out.println("Sorry, please enter valid Option");
-                        TeamFormationMain.showMainMenu();
-                }
-            } while (option != 6);
+                    break;
+                case 3:
+                    studentRep.selectRoles();
+                    break;
+                case 4:
+                    studentRep.selectUnlikeMem();
+                    return;
+                case 5:
+                    projectManager.changeGpa();
+                    return;
+                case 6:
+                    TeamFormationMain.showMainMenu();
+                    return;
+                default:
+                    System.out.println("Sorry, please enter valid Option");
+                    TeamFormationMain.showMainMenu();
+            }
+        } while (option != 6);
     }
 
     public static int manageStudentMenu() {
@@ -361,10 +371,5 @@ public class TeamFormationMain {
         }
 
     }
-
-
-
-
-
 
 }
