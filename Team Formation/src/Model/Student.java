@@ -11,15 +11,17 @@ public class Student {
     int expYears;
     ArrayList<String> prefProjects;
     ArrayList<String> roles;
+    ArrayList<String> frameworks;
     ArrayList<String> unlikeMemb;
 
     public Student() {
         prefProjects = new ArrayList();
         roles = new ArrayList();
+        frameworks = new ArrayList();
         unlikeMemb = new ArrayList();
     }
 
-    public Student(String id, String name, String gender, String personality, Double gpa, int expYears, ArrayList<String> prefProjects, ArrayList<String> roles, ArrayList<String> unlikeMemb) {
+    public Student(String id, String name, String gender, String personality, Double gpa, int expYears, ArrayList<String> prefProjects, ArrayList<String> roles, ArrayList<String> frameworks, ArrayList<String> unlikeMemb) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -28,6 +30,7 @@ public class Student {
         this.expYears = expYears;
         this.prefProjects = prefProjects;
         this.roles = roles;
+        this.frameworks = frameworks;
         this.unlikeMemb = unlikeMemb;
     }
 
@@ -101,5 +104,13 @@ public class Student {
 
     public void setUnlikeMemb(ArrayList<String> unlikeMemb) {
         this.unlikeMemb = unlikeMemb;
+    }
+
+    public ArrayList<String> getFrameworks() {
+        return frameworks;
+    }
+
+    public void setFrameworks(ArrayList<String> frameworks) {
+        this.frameworks = frameworks;
     }
 }

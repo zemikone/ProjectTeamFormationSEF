@@ -2,37 +2,41 @@ S1
 Anne
 F
 A
-0.2
+4.0
 3
-Pr1 Pr2 Pr3 Pr4 
+Pr5 Pr3 Pr4 Pr1 
 R1 R2 
-S2 S3 S4 
+F1 F2 F5 F6 
+S7 S8 S9
 S2
 Nick
 M
-A
-4.0
+B
+3.0
 3
-Pr1 Pr2 Pr3 Pr4 
+Pr1 Pr8 Pr9 Pr10
 R2 R3 
+
 S6 S7 S8 
 S3
 Jonny
 M
-A
-2.0
+C
+3.0
 3
-Pr1 Pr2 Pr3 Pr4 
+Pr1 Pr8 Pr9 Pr10
 R2 R3 
-S1 S2 S4 
+
+S1 S2 S5
 S4
 Macarina
 M
-D
-2.6
+B
+4.0
 3
-Pr1 Pr2 Pr3 Pr4 
+Pr1 Pr8 Pr9 Pr10
 R2 R1 
+
 S1 S2 S3 
 S5
 Killer
@@ -42,6 +46,7 @@ A
 3
 Pr1 Pr2 Pr3 Pr6 
 R4 R3 
+
 S6 S7 S8 
 S6
 Dave
@@ -51,6 +56,7 @@ A
 3
 Pr1 Pr2 Pr3 Pr6 
 R2 R4 
+
 S6 S7 S8 
 S7
 Michel
@@ -60,6 +66,7 @@ A
 3
 Pr1 Pr2 Pr3 Pr5 
 R4 R3 
+
 S6 S7 S8 S7 S7 S7 S7 S7 S7 
 S8
 Lisa
@@ -67,9 +74,10 @@ F
 A
 3.0
 3
-Pr1 Pr6 Pr3 Pr4 
+Pr1 Pr6 Pr3 Pr4
 R2 R3 
-S6 S7 S8 
+
+S6 S7 S9
 S9
 Kenneth
 M
@@ -78,6 +86,7 @@ A
 3
 Pr1 Pr2 Pr3 Pr4 
 R2 R3 
+
 S6 S7 S8 
 S10
 Jeremy
@@ -87,4 +96,5 @@ B
 3
 Pr1 Pr2 Pr3 Pr5 
 R2 R4 
+
 S6 S7 S8 
