@@ -1,9 +1,11 @@
+package Management;
+
 import Controller.FitnessMetricsController;
+import Main.TeamFormationMain;
+import Model.MainModel;
 import Model.Project;
 import Model.Student;
 import Model.Team;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,11 +21,14 @@ public class ProjectManager {
      ArrayList<Project> projectsList;
      ArrayList<Student> studentList;
      ArrayList<Team> teamList;
+     int countA=0,countB=0,countC=0,countD=0,countE=0,countF=0;
+     TeamFormation teamFormation;
 
     public ProjectManager(ArrayList<Project> projectsList, ArrayList<Student> studentList, ArrayList<Team> teamList) {
         this.projectsList = projectsList;
         this.studentList = studentList;
         this.teamList = teamList;
+        teamFormation = new TeamFormation(projectsList,studentList,teamList);
     }
 
 
@@ -237,12 +242,48 @@ public class ProjectManager {
 
     }
 
-    public void assignStudents(){
-
+    public void assignStudents() throws Exception{
+        teamFormation.formTeamsMenu();
     }
 
-    public void changeConstraints(){
+    public void changeConstraints() throws Exception {
+        Boolean isConsValid = false;
+        int entConsPerson=0;
+        do {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("Please enter the weight (1 to 4) for the Soft Constraint - Student Personality");
+            try {
+                entConsPerson = Integer.parseInt(keyboard.nextLine());
+                if(entConsPerson<5 && entConsPerson>0){
+                    TeamFormationMain.constPersonality = entConsPerson;
+                    isConsValid = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Sorry, please enter valid weight (1 to 4) for the Soft Constraint - Student Personality");
+            }
+            if (isConsValid == false)
+                System.out.println("Sorry, please enter valid weight (1 to 4) for the Soft Constraint - Student Personality");
+        } while (isConsValid == false);
 
+        isConsValid =false;
+        int entConsExp=0;
+        do {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("Please enter the weight (1 to 4) for the Soft Constraint - Years Experience");
+            try {
+                entConsExp = Integer.parseInt(keyboard.nextLine());
+                if(entConsExp<5 && entConsExp>0){
+                    TeamFormationMain.constWorkExp = entConsExp;
+                    isConsValid = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Sorry, please enter valid weight (1 to 4) for the Soft Constraint - Years Experience");
+            }
+            if (isConsValid == false)
+                System.out.println("Sorry, please enter valid weight (1 to 4) for the Soft Constraint - Years Experience");
+        } while (isConsValid == false);
+        TeamFormationMain.generateConstraintsFile();
+        TeamFormationMain.showMainMenu();
     }
 
     public void swapMembers() throws Exception {
@@ -259,11 +300,14 @@ public class ProjectManager {
         stage.setTitle("Team Fitness Matrics");
         stage.setScene(new Scene(root, 1000, 800));
         FitnessMetricsController controller = fxmlLoader.getController();
-        controller.setData(teamList,studentList,projectsList);
+        MainModel mainModel = new MainModel(projectsList,studentList,teamList);
+        controller.setData(teamList,studentList,projectsList,this);
+        controller.showData();
         stage.showAndWait();
 
 
     }
+
 
 
 

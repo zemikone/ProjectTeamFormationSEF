@@ -1,12 +1,12 @@
-import Controller.FitnessMetricsController;
+package Main;
+
+import Management.ClientRep;
+import Management.ProjectManager;
+import Management.StudentRep;
 import Model.Project;
 import Model.Student;
 import Model.Team;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -16,11 +16,14 @@ import java.util.Scanner;
 public class TeamFormationMain extends Application {
 
 
-    static ArrayList<Project> projectsList;
-    static ArrayList<Student> studentList;
-    static ArrayList<Team> teamList;
-    static ProjectManager projectManager;
-    static StudentRep studentRep;
+    public static ArrayList<Project> projectsList;
+    public static ArrayList<Student> studentList;
+    public static ArrayList<Team> teamList;
+    public static ProjectManager projectManager;
+    public static StudentRep studentRep;
+    public static ClientRep clientRep;
+    public static int constWorkExp =4;
+    public static int constPersonality =4;
     private static Scanner scanIn = null;
 
     @Override
@@ -34,6 +37,7 @@ public class TeamFormationMain extends Application {
         readProjectsFile();
         readStudentsFile();
         readTeamsFile();
+        readConstraintsFile();
         showMainMenu();
     }
 
@@ -46,6 +50,7 @@ public class TeamFormationMain extends Application {
         int option;
         projectManager = new ProjectManager(projectsList,studentList,teamList);
         studentRep = new StudentRep(projectsList,studentList,teamList);
+        clientRep = new ClientRep(projectsList,studentList,teamList);
         do {
             option = showMenu();
             switch (option) {
@@ -53,15 +58,18 @@ public class TeamFormationMain extends Application {
                     manageStudent();
                     break;
                 case 2:
-                    projectManager.shortlistProjects();
+                    manageProject();
                     break;
                 case 3:
-//                    addProject();
+                    projectManager.shortlistProjects();
                     break;
                 case 4:
-                    projectManager.swapMembers();
+                    projectManager.assignStudents();
                     break;
                 case 5:
+                    projectManager.swapMembers();
+                    break;
+                case 6:
                     System.out.println("Thank you. Good Bye.");
                     System.exit(0);
                 default:
@@ -78,10 +86,11 @@ public class TeamFormationMain extends Application {
         System.out.println("  Main Menu:");
         System.out.println("*************************");
         System.out.println("1.Manage Student Details");
-        System.out.println("2.Shortlist Projects");
-        System.out.println("3.Form Teams");
-        System.out.println("4.Display Team Fitness");
-        System.out.println("5.Quit");
+        System.out.println("2.Manage Project Details");
+        System.out.println("3.Shortlist Projects");
+        System.out.println("4.Form Teams");
+        System.out.println("5.Swap Members and Display Team Fitness");
+        System.out.println("6.Quit");
         System.out.println("*************************");
         System.out.println("Enter your choice:");
         try {
@@ -106,18 +115,21 @@ public class TeamFormationMain extends Application {
                     projectManager.addPersonality();
                     break;
                 case 2:
-//                        calPercentagePref();
+                    studentRep.selectPrefProjects();
                     break;
                 case 3:
                     studentRep.selectRoles();
                     break;
                 case 4:
+                    studentRep.addFrameworks();
+                    break;
+                case 5:
                     studentRep.selectUnlikeMem();
                     return;
-                case 5:
+                case 6:
                     projectManager.changeGpa();
                     return;
-                case 6:
+                case 7:
                     TeamFormationMain.showMainMenu();
                     return;
                 default:
@@ -137,9 +149,10 @@ public class TeamFormationMain extends Application {
         System.out.println("1.Capture Student Personalities");
         System.out.println("2.Add Student Preferences");
         System.out.println("3.Add Preferred Roles");
-        System.out.println("4.Select Members not Like to Work With");
-        System.out.println("5.change GPA");
-        System.out.println("6.Back");
+        System.out.println("4.Add Preferred Frameworks");
+        System.out.println("5.Select Members not Like to Work With");
+        System.out.println("6.change GPA");
+        System.out.println("7.Back");
         System.out.println("*************************");
         System.out.println("Enter your choice:");
         try {
@@ -151,6 +164,47 @@ public class TeamFormationMain extends Application {
 
     }
 
+    public static void manageProject() throws Exception{
+        int option;
+        do {
+            option = manageProjectMenu();
+            switch (option) {
+                case 1:
+                    clientRep.addRoles();
+                    break;
+                case 2:
+                    clientRep.addFrameworks();
+                    break;
+                case 3:
+                    TeamFormationMain.showMainMenu();
+                    return;
+                default:
+                    System.out.println("Sorry, please enter valid Option");
+                    TeamFormationMain.showMainMenu();
+            }
+        } while (option != 6);
+    }
+
+    public static int manageProjectMenu() {
+
+        int option;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("*************************");
+        System.out.println("Manage Project Menu:");
+        System.out.println("*************************");
+        System.out.println("1.Add Roles");
+        System.out.println("2.Add Frameworks");
+        System.out.println("3.Back");
+        System.out.println("*************************");
+        System.out.println("Enter your choice:");
+        try {
+            option = keyboard.nextInt();
+        } catch (Exception e) {
+            return 3;
+        }
+        return option;
+
+    }
 
 
 
@@ -175,22 +229,26 @@ public class TeamFormationMain extends Application {
                         i++;
                         break;
                     case 2:
-                        String[] inputArray = inputLine.split("\\s+");
-                        if (inputArray.length != 0) {
-                            for(String role: inputArray){
-                                project.getRoles().add(role);
+                        if(!inputLine.equals("")) {
+                            String[] inputArray = inputLine.split("\\s+");
+                            if (inputArray.length != 0) {
+                                for (String role : inputArray) {
+                                    project.getRoles().add(role);
+                                }
                             }
                         }
                         i++;
                         break;
                     case 3:
-                        String[] inputArray2 = inputLine.split("\\s+");
-                        if (inputArray2.length != 0) {
-                            for(String framework: inputArray2){
-                                project.getFrameworks().add(framework);
+                        if(!inputLine.equals("")) {
+                            String[] inputArray2 = inputLine.split("\\s+");
+                            if (inputArray2.length != 0) {
+                                for (String framework : inputArray2) {
+                                    project.getFrameworks().add(framework);
+                                }
                             }
-                            projectsList.add(project);
                         }
+                        projectsList.add(project);
                         i = 0;
                         break;
                     default:
@@ -248,7 +306,6 @@ public class TeamFormationMain extends Application {
                         break;
                     case 7:
                         if(!inputLine.equals("")) {
-
                             String[] inputArray1 = inputLine.split("\\s+");
                             if (inputArray1.length != 0) {
                                 for (String role : inputArray1) {
@@ -259,6 +316,17 @@ public class TeamFormationMain extends Application {
                         i++;
                         break;
                     case 8:
+                        if(!inputLine.equals("")) {
+                            String[] inputArray1 = inputLine.split("\\s+");
+                            if (inputArray1.length != 0) {
+                                for (String role : inputArray1) {
+                                    student.getFrameworks().add(role);
+                                }
+                            }
+                        }
+                        i++;
+                        break;
+                    case 9:
                         if(!inputLine.equals("")) {
                             String[] inputArray2 = inputLine.split("\\s+");
                             if (inputArray2.length != 0) {
@@ -352,6 +420,14 @@ public class TeamFormationMain extends Application {
                 }else{
                     builder.append("\n");
                 }
+                if(student.getFrameworks()!=null){
+                    for(String role : student.getFrameworks()) {
+                        builder.append(role + " ");
+                    }
+                    builder.append("\n");
+                }else{
+                    builder.append("\n");
+                }
                 if(student.getUnlikeMemb()!=null){
                     for(String mem : student.getUnlikeMemb()) {
                         builder.append(mem + " ");
@@ -371,5 +447,111 @@ public class TeamFormationMain extends Application {
         }
 
     }
+
+    public static void generateProjectsFile(ArrayList<Project> projectsList) {
+        try {
+            StringBuilder builder = new StringBuilder();
+
+            for (Project project : projectsList) {
+                builder.append(project.getName() + "\n");
+                builder.append(project.getpId() + "\n");
+                if(project.getRoles()!=null){
+                    for(String role : project.getRoles()) {
+                        builder.append(role + " ");
+                    }
+                    builder.append("\n");
+                }else{
+                    builder.append("\n");
+                }
+                if(project.getFrameworks()!=null){
+                    for(String frem : project.getFrameworks()) {
+                        builder.append(frem + " ");
+                    }
+                }else{
+                    builder.append("\n");
+                }
+                builder.append("\n");
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("projects.txt"));
+            writer.write(builder.toString());
+            writer.close();
+            System.out.println("projects.txt generated!");
+        } catch (Exception e) {
+            System.out.println("file writing error : " + e);
+        }
+
+    }
+
+    public static void generateTeamsFile() {
+        try {
+            StringBuilder builder = new StringBuilder();
+
+            for (Team team : teamList) {
+                builder.append(team.getId() + "\n");
+                builder.append(team.getProjId() + "\n");
+                for(String member:team.getMembers()){
+                    builder.append(member+ " ");
+                }
+                builder.append("\n");
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("teams.txt"));
+            writer.write(builder.toString());
+            writer.close();
+//            System.out.println("selections.txt generated!");
+        } catch (Exception e) {
+            System.out.println("file writing error : " + e);
+        }
+
+    }
+
+    public static void generateConstraintsFile() {
+        try {
+            StringBuilder builder = new StringBuilder();
+
+            builder.append(constPersonality + "\n");
+            builder.append(constWorkExp + "\n");
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("constraints.txt"));
+            writer.write(builder.toString());
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("file writing error : " + e);
+        }
+
+    }
+
+    public static void readConstraintsFile()  {
+        int rowCount = 0;
+        int count = 0;
+        String inputLine = "";
+        int i = 0;
+
+        try {
+            Team team = null;
+            for (scanIn = new Scanner(new BufferedReader(new FileReader("constraints.txt"))); scanIn.hasNextLine(); ++rowCount) {
+                inputLine = scanIn.nextLine();
+                switch (i) {
+                    case 0:
+                        constPersonality = Integer.parseInt(inputLine);
+                        i++;
+                        break;
+                    case 1:
+                        constWorkExp = Integer.parseInt(inputLine);
+                        i = 0;
+                        break;
+                    default:
+                }
+            }
+        } catch (Exception e) {
+//            throw new NullPointerException("Some errors detected on the data in Constraints file. please check the values of fileException is " + e);
+        }
+
+    }
+
+
+
+
 
 }

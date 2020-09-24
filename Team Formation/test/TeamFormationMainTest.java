@@ -1,6 +1,5 @@
-import Model.Project;
+import Main.TeamFormationMain;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 class TeamFormationMainTest {
 
-    static  TeamFormationMain teamFormationMain;
+    static TeamFormationMain teamFormationMain;
     @Before
     void initializeClasses(){
         teamFormationMain = new TeamFormationMain();
