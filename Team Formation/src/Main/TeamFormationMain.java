@@ -64,7 +64,7 @@ public class TeamFormationMain extends Application {
                     projectManager.shortlistProjects();
                     break;
                 case 4:
-                    formTeams();
+                    projectManager.assignStudents();
                     break;
                 case 5:
                     projectManager.swapMembers();
@@ -206,57 +206,7 @@ public class TeamFormationMain extends Application {
 
     }
 
-    public static void formTeams() throws Exception{
 
-        int option;
-        do {
-            option = showTeamMenu();
-            switch (option) {
-                case 1:
-                    projectManager.createNewTeam();
-                    break;
-                case 2:
-                    projectManager.addMembersExistingTeam();
-                    break;
-                case 3:
-                    projectManager.showTeams();
-                    break;
-                case 4:
-                    projectManager.changeConstraints();
-                    return;
-                case 5:
-                    showMainMenu();
-                    return;
-                default:
-                    System.out.println("Sorry, please enter valid Option");
-                    showMainMenu();
-            }
-        } while (option != 6);
-
-    }
-
-    public static int showTeamMenu() {
-
-        int option;
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("*************************");
-        System.out.println("  Teams Menu:");
-        System.out.println("*************************");
-        System.out.println("1.Create a new Team");
-        System.out.println("2.Add members to a Team");
-        System.out.println("3.View Teams");
-        System.out.println("4.Change Constraints");
-        System.out.println("5.Back");
-        System.out.println("*************************");
-        System.out.println("Enter your choice:");
-        try {
-            option = keyboard.nextInt();
-        } catch (Exception e) {
-            return 3;
-        }
-        return option;
-
-    }
 
 
     public static void readProjectsFile()  throws Exception{
