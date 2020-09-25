@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import Exception.TeamsEmptyException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -227,6 +227,8 @@ public class ProjectManager {
             }
             projectsList = tempProjectsList;
 
+        }else{
+            throw  new TeamsEmptyException("");
         }
 
 

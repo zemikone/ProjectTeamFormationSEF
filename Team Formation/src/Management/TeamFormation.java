@@ -4,7 +4,7 @@ import Main.TeamFormationMain;
 import Model.Project;
 import Model.Student;
 import Model.Team;
-
+import Exception.TeamsEmptyException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -526,7 +526,7 @@ public class TeamFormation {
         } while(isMatched == false);
     }
 
-    public static void showTeams() {
+    public static void showTeams() throws Exception {
         boolean goBack = false;
         String input="";
 
@@ -537,15 +537,19 @@ public class TeamFormation {
             System.out.println(" Proj ID     Team");
             System.out.println(" -------     ----");
 
-            for (Team team : teamList) {
-                String members ="";
-                for(String mem1 : team.getMembers()){
-                    members = members+ mem1 + " ";
+            if(teamList.size()!=0) {
+                for (Team team : teamList) {
+                    String members = "";
+                    for (String mem1 : team.getMembers()) {
+                        members = members + mem1 + " ";
+                    }
+                    System.out.println(" " + team.getProjId() + "         " + members);
                 }
-                System.out.println(" " + team.getProjId() + "         " + members);
-            }
 
-            input = keyboard.nextLine();
+//                input = keyboard.nextLine();
+            }else{
+                throw new TeamsEmptyException("Teams List is Empty!");
+            }
             goBack = true;
         } while(goBack == false);
 

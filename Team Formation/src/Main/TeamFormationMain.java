@@ -16,9 +16,9 @@ import java.util.Scanner;
 public class TeamFormationMain extends Application {
 
 
-    public static ArrayList<Project> projectsList;
-    public static ArrayList<Student> studentList;
-    public static ArrayList<Team> teamList;
+    public static ArrayList<Project> projectsList = new ArrayList();
+    public static ArrayList<Student> studentList = new ArrayList();
+    public static ArrayList<Team> teamList = new ArrayList();
     public static ProjectManager projectManager;
     public static StudentRep studentRep;
     public static ClientRep clientRep;
@@ -28,10 +28,6 @@ public class TeamFormationMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        projectsList = new ArrayList();
-        studentList = new ArrayList();
-        teamList = new ArrayList();
-
 
         //Read Projects Text File and Save Data to a ArrayList
         readProjectsFile();
