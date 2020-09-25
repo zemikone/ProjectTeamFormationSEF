@@ -1,3 +1,5 @@
+package Management;
+
 import Main.TeamFormationMain;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -33,4 +35,6 @@ class TeamFormationMainTest {
         teamFormationMain.readTeamsFile();
         assertEquals("T1",teamFormationMain.teamList.get(0).getId());
     }
+
+
 }
