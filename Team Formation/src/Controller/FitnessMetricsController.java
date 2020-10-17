@@ -4,23 +4,26 @@ package Controller;
 import Main.TeamFormationMain;
 import Management.ProjectManager;
 import Management.TeamFormation;
-import Model.MainModel;
-import Model.Project;
-import Model.Student;
-import Model.Team;
+import Model.*;
+import Util.CommonUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+
+import static Util.CommonUtil.calculateSD;
 
 public class FitnessMetricsController {
      ArrayList<Project> projectsList;
      ArrayList<Student> studentsList;
      ArrayList<Team> teamList;
+    ArrayList<Fitness> percentagePrefArray;
      ProjectManager projectManager;
 
      int clickCount =0;
@@ -154,12 +157,27 @@ public class FitnessMetricsController {
     private Button btnSwap;
 
     @FXML
+    private Label proj1;
+    @FXML
+    private Label proj2;
+    @FXML
+    private Label proj3;
+    @FXML
+    private Label proj4;
+    @FXML
+    private Label proj5;
+
+
+    @FXML
     private StackedBarChart<String,Number> chartFItness;
 
     @FXML
     NumberAxis xAxis;
     @FXML
     CategoryAxis yAxis;
+
+    @FXML
+    private BarChart<String,Number> chartpref;
 
     @FXML
     private Button backButton;
@@ -326,10 +344,10 @@ public class FitnessMetricsController {
     private void setCheckBoxCount(Label label){
         if(clickCount==0) {
             clickCount++;
-            swapId1 = label.getText();
+            swapId1 = getStudentId(label.getText());
         }else if(clickCount==1){
             clickCount++;
-            swapId2 = label.getText();
+            swapId2 = getStudentId(label.getText());
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select two Members.", ButtonType.OK);
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
@@ -341,77 +359,192 @@ public class FitnessMetricsController {
     public void showData(){
         if(teamList.size()!=0){
             if(teamList.size()>0) {
+                proj1.setText(getProjectName(teamList.get(0).getProjId()));
                 if(teamList.get(0).getMembers().size()>0) {
-                    lbt1mem1.setText(teamList.get(0).getMembers().get(0));
+                    lbt1mem1.setText(getStudentName(teamList.get(0).getMembers().get(0)));
+                }else{
+                    lbt1mem1.setVisible(false);
+                    cht1mem1.setVisible(false);
                 }
                 if(teamList.get(0).getMembers().size()>1) {
-                    lbt1mem2.setText(teamList.get(0).getMembers().get(1));
+                    lbt1mem2.setText(getStudentName(teamList.get(0).getMembers().get(1)));
+                }else{
+                    lbt1mem2.setVisible(false);
+                    cht1mem2.setVisible(false);
                 }
                 if(teamList.get(0).getMembers().size()>2) {
-                    lbt1mem3.setText(teamList.get(0).getMembers().get(2));
+                    lbt1mem3.setText(getStudentName(teamList.get(0).getMembers().get(2)));
+                }else{
+                    lbt1mem3.setVisible(false);
+                    cht1mem3.setVisible(false);
                 }
                 if(teamList.get(0).getMembers().size()>3) {
-                    lbt1mem4.setText(teamList.get(0).getMembers().get(3));
+                    lbt1mem4.setText(getStudentName(teamList.get(0).getMembers().get(3)));
+                }else{
+                    lbt1mem4.setVisible(false);
+                    cht1mem4.setVisible(false);
                 }
+            }else{
+                proj1.setText("-");
+                lbt1mem1.setVisible(false);
+                cht1mem1.setVisible(false);
+                lbt1mem2.setVisible(false);
+                cht1mem2.setVisible(false);
+                lbt1mem3.setVisible(false);
+                cht1mem3.setVisible(false);
+                lbt1mem4.setVisible(false);
+                cht1mem4.setVisible(false);
             }
             if(teamList.size()>1) {
+                proj2.setText(getProjectName(teamList.get(1).getProjId()));
                 if(teamList.get(1).getMembers().size()>0) {
-                    lbt2mem1.setText(teamList.get(1).getMembers().get(0));
+                    lbt2mem1.setText(getStudentName(teamList.get(1).getMembers().get(0)));
+                }else{
+                    lbt2mem1.setVisible(false);
+                    cht2mem1.setVisible(false);
                 }
                 if(teamList.get(1).getMembers().size()>1) {
-                    lbt2mem2.setText(teamList.get(1).getMembers().get(1));
+                    lbt2mem2.setText(getStudentName(teamList.get(1).getMembers().get(1)));
+                }else{
+                    lbt2mem2.setVisible(false);
+                    cht2mem2.setVisible(false);
                 }
                 if(teamList.get(1).getMembers().size()>2) {
-                    lbt2mem3.setText(teamList.get(1).getMembers().get(2));
+                    lbt2mem3.setText(getStudentName(teamList.get(1).getMembers().get(2)));
+                }else{
+                    lbt2mem3.setVisible(false);
+                    cht2mem3.setVisible(false);
                 }
                 if(teamList.get(1).getMembers().size()>3) {
-                    lbt2mem4.setText(teamList.get(1).getMembers().get(3));
+                    lbt2mem4.setText(getStudentName(teamList.get(1).getMembers().get(3)));
+                }else{
+                    lbt2mem4.setVisible(false);
+                    cht2mem4.setVisible(false);
                 }
+            }else{
+                proj2.setText("-");
+                lbt2mem1.setVisible(false);
+                cht2mem1.setVisible(false);
+                lbt2mem2.setVisible(false);
+                cht2mem2.setVisible(false);
+                lbt2mem3.setVisible(false);
+                cht2mem3.setVisible(false);
+                lbt2mem4.setVisible(false);
+                cht2mem4.setVisible(false);
             }
 
             if(teamList.size()>2) {
+                proj3.setText(getProjectName(teamList.get(2).getProjId()));
                 if(teamList.get(2).getMembers().size()>0) {
-                    lbt3mem1.setText(teamList.get(2).getMembers().get(0));
+                    lbt3mem1.setText(getStudentName(teamList.get(2).getMembers().get(0)));
+                }else{
+                    lbt3mem1.setVisible(false);
+                    cht3mem1.setVisible(false);
                 }
                 if(teamList.get(2).getMembers().size()>1) {
-                    lbt3mem2.setText(teamList.get(2).getMembers().get(1));
+                    lbt3mem2.setText(getStudentName(teamList.get(2).getMembers().get(1)));
+                }else{
+                    lbt3mem2.setVisible(false);
+                    cht3mem2.setVisible(false);
                 }
                 if(teamList.get(2).getMembers().size()>2) {
-                    lbt3mem3.setText(teamList.get(2).getMembers().get(2));
+                    lbt3mem3.setText(getStudentName(teamList.get(2).getMembers().get(2)));
+                }else{
+                    lbt3mem3.setVisible(false);
+                    cht3mem3.setVisible(false);
                 }
                 if(teamList.get(2).getMembers().size()>3) {
-                    lbt3mem4.setText(teamList.get(2).getMembers().get(3));
+                    lbt3mem4.setText(getStudentName(teamList.get(2).getMembers().get(3)));
+                }else{
+                    lbt3mem4.setVisible(false);
+                    cht3mem4.setVisible(false);
                 }
+            }else{
+                proj3.setText("-");
+                lbt3mem1.setVisible(false);
+                cht3mem1.setVisible(false);
+                lbt3mem2.setVisible(false);
+                cht3mem2.setVisible(false);
+                lbt3mem3.setVisible(false);
+                cht3mem3.setVisible(false);
+                lbt3mem4.setVisible(false);
+                cht3mem4.setVisible(false);
             }
 
             if(teamList.size()>3) {
+                proj4.setText(getProjectName(teamList.get(3).getProjId()));
                 if(teamList.get(3).getMembers().size()>0) {
-                    lbt4mem1.setText(teamList.get(3).getMembers().get(0));
+                    lbt4mem1.setText(getStudentName(teamList.get(3).getMembers().get(0)));
+                }else{
+                    lbt4mem1.setVisible(false);
+                    cht4mem1.setVisible(false);
                 }
                 if(teamList.get(3).getMembers().size()>1) {
-                    lbt4mem2.setText(teamList.get(3).getMembers().get(1));
+                    lbt4mem2.setText(getStudentName(teamList.get(3).getMembers().get(1)));
+                }else{
+                    lbt4mem2.setVisible(false);
+                    cht4mem2.setVisible(false);
                 }
                 if(teamList.get(3).getMembers().size()>2) {
-                    lbt4mem3.setText(teamList.get(3).getMembers().get(2));
+                    lbt4mem3.setText(getStudentName(teamList.get(3).getMembers().get(2)));
+                }else{
+                    lbt4mem3.setVisible(false);
+                    cht4mem3.setVisible(false);
                 }
                 if(teamList.get(3).getMembers().size()>3) {
-                    lbt4mem4.setText(teamList.get(3).getMembers().get(3));
+                    lbt4mem4.setText(getStudentName(teamList.get(3).getMembers().get(3)));
+                }else{
+                    lbt4mem4.setVisible(false);
+                    cht4mem4.setVisible(false);
                 }
+            }else{
+                proj4.setText("-");
+                lbt4mem1.setVisible(false);
+                cht4mem1.setVisible(false);
+                lbt4mem2.setVisible(false);
+                cht4mem2.setVisible(false);
+                lbt4mem3.setVisible(false);
+                cht4mem3.setVisible(false);
+                lbt4mem4.setVisible(false);
+                cht4mem4.setVisible(false);
             }
 
             if(teamList.size()>4) {
+                proj5.setText(getProjectName(teamList.get(4).getProjId()));
                 if(teamList.get(4).getMembers().size()>0) {
-                    lbt5mem1.setText(teamList.get(4).getMembers().get(0));
+                    lbt5mem1.setText(getStudentName(teamList.get(4).getMembers().get(0)));
+                }else{
+                    lbt5mem1.setVisible(false);
+                    cht5mem1.setVisible(false);
                 }
                 if(teamList.get(4).getMembers().size()>1) {
-                    lbt5mem2.setText(teamList.get(4).getMembers().get(1));
+                    lbt5mem2.setText(getStudentName(teamList.get(4).getMembers().get(1)));
+                }else{
+                    lbt5mem2.setVisible(false);
+                    cht5mem2.setVisible(false);
                 }
                 if(teamList.get(4).getMembers().size()>2) {
-                    lbt5mem3.setText(teamList.get(4).getMembers().get(2));
+                    lbt5mem3.setText(getStudentName(teamList.get(4).getMembers().get(2)));
+                }else{
+                    lbt5mem3.setVisible(false);
+                    cht5mem3.setVisible(false);
                 }
                 if(teamList.get(4).getMembers().size()>3) {
-                    lbt5mem4.setText(teamList.get(4).getMembers().get(3));
+                    lbt5mem4.setText(getStudentName(teamList.get(4).getMembers().get(3)));
+                }else{
+                    lbt5mem4.setVisible(false);
+                    cht5mem4.setVisible(false);
                 }
+            }else{
+                proj5.setText("-");
+                lbt5mem1.setVisible(false);
+                cht5mem1.setVisible(false);
+                lbt5mem2.setVisible(false);
+                cht5mem2.setVisible(false);
+                lbt5mem3.setVisible(false);
+                cht5mem3.setVisible(false);
+                lbt5mem4.setVisible(false);
+                cht5mem4.setVisible(false);
             }
         }
         initializeChart();
@@ -445,6 +578,30 @@ public class FitnessMetricsController {
     }
 
     public void initializeChart(){
+
+        this.percentagePrefArray = calPercentagePref();
+
+
+        XYChart.Series<String, Number> dataSeries3;
+        ArrayList<XYChart.Series<String, Number>>  dataSeriesList = new ArrayList();
+        for(int i=0;i<percentagePrefArray.size();i++){
+            dataSeries3 = new XYChart.Series<String, Number>();
+            dataSeries3.getData().add(new XYChart.Data<String, Number>("Team "+ (i+1),percentagePrefArray.get(i).getValue()));
+            dataSeriesList.add(dataSeries3);
+        }
+
+
+        chartpref.setTitle("");
+        chartpref.getData().clear();
+        chartpref.layout();
+//        chartpref.setAnimated(false);
+        for(XYChart.Series<String, Number> dataSeries: dataSeriesList) {
+            chartpref.getData().add(dataSeries);
+        }
+        chartpref.setTitle("% Getting 1st and  2nd Preferences \n                  STD Dev= "+ CommonUtil.roundOff(percentagePrefArray.get(0).getStd()));
+
+
+
         // Create a StackedBarChart
 //        chartFItness.getData().clear();
 //        chartFItness.layout();
@@ -452,18 +609,18 @@ public class FitnessMetricsController {
         dataSeries1.setName("Constraint - Personality Type");
 
         for(int i=0;i<teamList.size();i++){
-            dataSeries1.getData().add(new XYChart.Data<String, Number>("Project "+(i+1), (TeamFormationMain.constPersonality*1)));
+            dataSeries1.getData().add(new XYChart.Data<String, Number>("Team "+(i+1), (TeamFormationMain.constPersonality*1)));
         }
 
         XYChart.Series<String, Number> dataSeries2 = new XYChart.Series<String, Number>();
         dataSeries2.setName("Constraint - Years of Experience");
         for(int i=0;i<teamList.size();i++) {
-            dataSeries2.getData().add(new XYChart.Data<String, Number>("Project " + (i + 1), (TeamFormationMain.constWorkExp * 1)));
+            dataSeries2.getData().add(new XYChart.Data<String, Number>("Team " + (i + 1), (TeamFormationMain.constWorkExp * 1)));
         }
 
         // Add Series to StackedBarChart.
 //        chartFItness.getData().addAll(dataSeries1,dataSeries2);
-        chartFItness.setTitle("Team Fitness");
+        chartFItness.setTitle("Team Fitness - Constraints");
         showChart(dataSeries1,dataSeries2);
     }
 
@@ -472,6 +629,86 @@ public class FitnessMetricsController {
         chartFItness.layout();
         chartFItness.setAnimated(false);
         chartFItness.getData().addAll(dataSeries1,dataSeries2);
+    }
+
+    private String getStudentName(String id){
+        for(Student student: studentsList){
+            if(student.getId().equalsIgnoreCase(id)){
+                return student.getName();
+            }
+        }
+        return "-";
+    }
+
+    private String getProjectName(String id){
+        for(Project project: projectsList){
+            if(project.getpId().equalsIgnoreCase(id)){
+                return project.getName();
+            }
+        }
+        return "-";
+    }
+
+    private String getStudentId(String name){
+        for(Student student: studentsList){
+            if(student.getName().equalsIgnoreCase(name)){
+                return student.getId();
+            }
+        }
+        return "-";
+    }
+
+
+    public  ArrayList<Fitness> calPercentagePref(){
+        ArrayList<Double> percentageArray =new ArrayList();
+        ArrayList<Fitness> percentagePrefArray =new ArrayList();
+        Double studentCount =0.0;
+        Double prefStdCount =0.0;
+        for(Team team : teamList){
+            studentCount =0.0;
+            prefStdCount =0.0;
+            Fitness fitness =new Fitness();
+            for(String member : team.getMembers()){
+                studentCount++;
+                for(Student student : studentsList){
+                    if(student.getId().equals(member)){
+                        if(student.getPrefProjects().size()>1) {
+                            if (student.getPrefProjects().get(0).equals(team.getProjId()) || student.getPrefProjects().get(1).equals(team.getProjId())) {
+                                prefStdCount++;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            Double percentage=0.0;
+            for(Project project:projectsList) {
+                if(project.getpId().equals(team.getProjId())) {
+//                    System.out.println("Project -" + project.getpTitle());
+                    break;
+                }
+            }
+            if(studentCount!=0) {
+                if(prefStdCount!=0) {
+                    percentage = (prefStdCount / studentCount) * 100;
+                    percentageArray.add(percentage);
+
+
+                }else{
+
+                }
+                fitness.setProjName(team.getProjId());
+                fitness.setValue(percentage);
+                percentagePrefArray.add(fitness);
+            }else{
+                System.out.println("No Teams Formed!");
+                System.out.println("Percentage of getting 1st and 2nd preference is 0%");
+            }
+
+        }
+        Double sd = calculateSD(percentageArray);
+        percentagePrefArray.get(0).setStd(sd);
+        return percentagePrefArray;
     }
 
 }
