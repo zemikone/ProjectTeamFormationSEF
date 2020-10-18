@@ -1,9 +1,0 @@
-S1
-EraDon
-Female
-P1
-3.2
-3
-Pr1 Pr2
-Designer
-S2

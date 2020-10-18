@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Team Formation of Students" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Main.TeamFormationMain" />
+    <module name="Team Formation" />
+    <option name="VM_PARAMETERS" value="--module-path C:\Users\HP-PC\Desktop\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

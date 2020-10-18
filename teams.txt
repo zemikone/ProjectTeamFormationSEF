@@ -1,0 +1,12 @@
+T1
+Pr1
+S5 S4 S7 S8 
+T2
+Pr2
+S9 S2 S3 S7 
+T3
+Pr3
+S6 
+T4
+Pr5
+S10 S1 

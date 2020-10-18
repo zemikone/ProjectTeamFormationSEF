@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FitnessMetricsController">
+   <children>
+      <AnchorPane layoutX="-8.0" layoutY="27.0" prefHeight="35.0" prefWidth="262.0" style="-fx-background-color: #0077B6;" AnchorPane.leftAnchor="-8.0" AnchorPane.topAnchor="27.0">
+         <children>
+            <Label alignment="CENTER" layoutX="37.0" layoutY="4.0" prefHeight="27.0" prefWidth="205.0" text="Team Fitness" AnchorPane.topAnchor="4.0">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="254.0" prefWidth="1003.0" spacing="20.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF595E;">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 1" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="lbt1mem1" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 01">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt1mem2" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 02">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt1mem3" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 03">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt1mem4" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 04">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="178.0" prefWidth="38.0" spacing="10.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <CheckBox fx:id="cht1mem1" mnemonicParsing="false" onAction="#cht1mem1Checked" />
+                        <CheckBox fx:id="cht1mem2" mnemonicParsing="false" onAction="#cht1mem2Checked" />
+                        <CheckBox fx:id="cht1mem3" mnemonicParsing="false" onAction="#cht1mem3Checked" />
+                        <CheckBox fx:id="cht1mem4" mnemonicParsing="false" onAction="#cht1mem4Checked" />
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFCA3A;">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 2" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="lbt2mem1" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 01">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt2mem2" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 02">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt2mem3" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 03">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt2mem4" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 04">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="178.0" prefWidth="38.0" spacing="10.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <CheckBox fx:id="cht2mem1" mnemonicParsing="false" onAction="#cht2mem1Checked" />
+                        <CheckBox fx:id="cht2mem2" mnemonicParsing="false" onAction="#cht2mem2Checked" />
+                        <CheckBox fx:id="cht2mem3" mnemonicParsing="false" onAction="#cht2mem3Checked" />
+                        <CheckBox fx:id="cht2mem4" mnemonicParsing="false" onAction="#cht2mem4Checked" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #8AC926;">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 3" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="lbt3mem1" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 01">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt3mem2" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 02">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt3mem3" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 03">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt3mem4" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 04">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="178.0" prefWidth="38.0" spacing="10.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <CheckBox fx:id="cht3mem1" mnemonicParsing="false" onAction="#cht3mem1Checked" />
+                        <CheckBox fx:id="cht3mem2" mnemonicParsing="false" onAction="#cht3mem2Checked" />
+                        <CheckBox fx:id="cht3mem3" mnemonicParsing="false" onAction="#cht3mem3Checked" />
+                        <CheckBox fx:id="cht3mem4" mnemonicParsing="false" onAction="#cht3mem4Checked" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1982C4;">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 4" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="lbt4mem1" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 01">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt4mem2" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 02">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt4mem3" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 03">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt4mem4" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 04">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="178.0" prefWidth="38.0" spacing="10.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <CheckBox fx:id="cht4mem1" mnemonicParsing="false" onAction="#cht4mem1Checked" />
+                        <CheckBox fx:id="cht4mem2" mnemonicParsing="false" onAction="#cht4mem2Checked" />
+                        <CheckBox fx:id="cht4mem3" mnemonicParsing="false" onAction="#cht4mem3Checked" />
+                        <CheckBox fx:id="cht4mem4" mnemonicParsing="false" onAction="#cht4mem4Checked" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6A4C93;">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 5" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="lbt5mem1" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 01">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt5mem2" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 02">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt5mem3" alignment="CENTER" style="-fx-background-color: #EFF9F6;" text="Member 03">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="lbt5mem4" alignment="CENTER" style="-fx-background-color: #EFF7F6;" text="Member 04">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="178.0" prefWidth="38.0" spacing="10.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <CheckBox fx:id="cht5mem1" mnemonicParsing="false" onAction="#cht5mem1Checked" />
+                        <CheckBox fx:id="cht5mem2" mnemonicParsing="false" onAction="#cht5mem2Checked" />
+                        <CheckBox fx:id="cht5mem3" mnemonicParsing="false" onAction="#cht5mem3Checked" />
+                        <CheckBox fx:id="cht5mem4" mnemonicParsing="false" onAction="#cht5mem4Checked" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="710.0" prefHeight="82.0" prefWidth="1002.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnSwap" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#swapClicked" prefHeight="34.0" prefWidth="87.0" text="Swap" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnSwap1" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="467.0" layoutY="32.0" mnemonicParsing="false" onAction="#swapClicked" prefHeight="34.0" prefWidth="87.0" text="Add" textAlignment="CENTER">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="95.0" prefHeight="316.0" prefWidth="1001.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+         <children>
+            <StackedBarChart fx:id="chartFItness" title="Team Fitness">
+              <xAxis>
+                <CategoryAxis fx:id="yAxis" label="Teams" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis cache="true" cacheHint="SPEED" focusTraversable="true" label="Std Deviation" minWidth="-Infinity" minorTickCount="6" nodeOrientation="RIGHT_TO_LEFT" side="LEFT" tickLabelFill="#440a5f" fx:id="xAxis" />
+              </yAxis>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+            </StackedBarChart>
+         </children>
+      </HBox>
+      <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="913.0" layoutY="33.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #FF595E;" text="Back" textFill="WHITE" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="33.0" />
+   </children>
+</AnchorPane>
