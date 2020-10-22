@@ -1,0 +1,6 @@
+S1
+PR1 4 PR2 3 PR3 2 PR4 1 
+S3
+pr5 4 pr6 3 pr7 2 pr7 1 
+S2
+Pr2 4 Pr4 3 Pr5 2 Pr6 1 

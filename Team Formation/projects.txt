@@ -1,0 +1,26 @@
+Customer Relationship Management (CRM)
+Pr1
+R1 R2 F2 F5
+F1 F2 F3 F4 
+Project Management App
+Pr2
+R1 
+F4 F5
+Online Streaming App
+Pr3
+R2
+F5
+Online Fitness App
+Pr4
+R1 R2
+Web Store App
+Pr5
+R1 R4
+F3 F5
+
+
+Online Streaming App
+Pr4
+this is a onine streamig app
+Own2
+A 4 N 3 P 2 W 1 

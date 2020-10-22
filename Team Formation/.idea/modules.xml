@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProjectTeamFormationSEF.iml" filepath="$PROJECT_DIR$/ProjectTeamFormationSEF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Team Formation.iml" filepath="$PROJECT_DIR$/Team Formation.iml" />
     </modules>
   </component>
 </project>
