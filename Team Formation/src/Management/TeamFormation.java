@@ -212,9 +212,10 @@ public class TeamFormation {
                                         break;
                                     }
                                 }
-                                if(isTaken)
+                                if(isTaken){
                                     System.out.println("Sorry, this Student already been assigned to a Team.");
                                 break;
+                                }
                             }
 
                             //Check whether student is already added to the same Team
