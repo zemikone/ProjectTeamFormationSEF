@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.StackedBarChart?>
@@ -76,6 +77,11 @@
                         <CheckBox fx:id="cht1mem4" mnemonicParsing="false" onAction="#cht1mem4Checked" />
                      </children>
                   </VBox>
+                  <Label fx:id="proj1" alignment="CENTER" layoutX="69.0" layoutY="24.0" prefHeight="17.0" prefWidth="95.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
                </children></AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFCA3A;">
                <children>
@@ -128,6 +134,11 @@
                         <CheckBox fx:id="cht2mem4" mnemonicParsing="false" onAction="#cht2mem4Checked" />
                      </children>
                   </VBox>
+                  <Label fx:id="proj2" alignment="CENTER" layoutX="53.0" layoutY="25.0" prefHeight="17.0" prefWidth="95.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #8AC926;">
@@ -181,6 +192,11 @@
                         <CheckBox fx:id="cht3mem4" mnemonicParsing="false" onAction="#cht3mem4Checked" />
                      </children>
                   </VBox>
+                  <Label fx:id="proj3" alignment="CENTER" layoutX="50.0" layoutY="26.0" prefHeight="17.0" prefWidth="95.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1982C4;">
@@ -234,14 +250,24 @@
                         <CheckBox fx:id="cht4mem4" mnemonicParsing="false" onAction="#cht4mem4Checked" />
                      </children>
                   </VBox>
+                  <Label fx:id="proj4" alignment="CENTER" layoutY="41.0" prefHeight="17.0" prefWidth="95.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6A4C93;">
+            <AnchorPane fx:id="team5Anc" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6A4C93;">
                <children>
                   <Label alignment="TOP_CENTER" layoutY="14.0" prefHeight="22.0" prefWidth="176.0" style="-fx-background-color: #0b090a;" text="Team 5" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="proj5" alignment="CENTER" layoutX="41.0" layoutY="38.0" prefHeight="17.0" prefWidth="95.0" text="Project Name" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
                   </Label>
                   <VBox alignment="CENTER" layoutX="20.0" layoutY="38.0" prefHeight="178.0" prefWidth="81.0" spacing="10.0">
                      <children>
@@ -311,12 +337,20 @@
             <Insets left="20.0" right="20.0" />
          </padding>
          <children>
-            <StackedBarChart fx:id="chartFItness" title="Team Fitness">
+            <BarChart fx:id="chartpref" title="\% Getting 1st and  2nd Preferences">
+               <xAxis>
+                  <CategoryAxis fx:id="yAxisPref" label="Team" side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis label="Percentage" side="LEFT" fx:id="xAxisPref" />
+               </yAxis>
+            </BarChart>
+            <StackedBarChart fx:id="chartFItness" title="Team Fitness - Constraints">
               <xAxis>
-                <CategoryAxis fx:id="yAxis" label="Satisfaction" side="BOTTOM" />
+                <CategoryAxis fx:id="yAxis" label="Team" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis label="Project" side="LEFT" fx:id="xAxis" />
+                <NumberAxis label="Satisfaction" side="LEFT" fx:id="xAxis" />
               </yAxis>
             </StackedBarChart>
          </children>
